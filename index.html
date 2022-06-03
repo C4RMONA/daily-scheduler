@@ -18,7 +18,7 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./Assets/css/style.css" />
     <title>Work Day Scheduler</title>
   </head>
 
@@ -30,19 +30,20 @@
     </header>
 
     <!-- Timeblocks go here -->
-    <div class="container col-12 col-lg-9 d-flex flex-column">
-      <div class="m-5 row justify-content-around">
-        <div class="col-12 col-md-6 col-xl-1 mb-3">
-          <div class="hour ">9am</div>
-        </div>
-        <div class="col-12 col-md-6 col-xl-10 mb-3">
-          <div class="time-block text-center">work needed</div>
-        </div>
-        <div class="col-12 col-md-6 col-xl-1 mb-3">
-          <div class="save-btn">save</div>
-        </div>
+    <div class="container">
+      <div class="row time-block">
+       <!-- timeblock -->
+      <div class="col-1 hour" id="hour">9am
+      </div>
+        <textarea id="input" class="col-10  description">work needed
+        </textarea>
+        <button class="col-1 saveBtn">
+          <i class="fas fa-save"></i>
+        </button>
+        <!-- save button end -->
       </div>
     </div>
+  
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
