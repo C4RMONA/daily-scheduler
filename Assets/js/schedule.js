@@ -1,43 +1,45 @@
-var time = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"]
-var tasks = ["1", "2", "3", "", "", "", "", "", ""]
+var date = document.getElementById("currentDay");
+var textarea = document.querySelectorAll("textarea");
+var currentHour = (moment().hour());
+let hour = [9, 10, 11, 12, 13, 14, 15, 16, 17];
+
+date.textContent = moment().format('dddd, MMMM Do');
 
 
+function timeIndicator () {
+ // loop over time blocks
+  $(".time-block").each(function () {
+    var blockTime = parseInt($(this).attr("id").split("hour")[1]);
 
-var createTask = function() {
-    let task = "";
-    for (let i = 0; i < tasks.length; i++) {
-        console.log(tasks[i]);
-        task += `<div class="col-9 text-center" id="input" placeholder="add task here">${tasks[i]}</div>`
-    } return task
+    // check and add classes according to time
+    if (blockTime < currentHour) {
+      $(this).removeClass("future");
+      $(this).removeClass("present");
+      $(this).addClass("past");
+    }
+    else if (blockTime === currentHour) {
+      $(this).removeClass("past");
+      $(this).removeClass("future");
+      $(this).addClass("present");
+    }
+    else {
+      $(this).removeClass("present");
+      $(this).removeClass("past");
+      $(this).addClass("future");
+    }
+  })
+}
+
+$(".saveBtn").on("click", function () {
+    var tasks = $(this).siblings(".description").val();
+    var time = $(this).parent().attr("id");
+    // Save text into local storage
+    localStorage.setItem(time, tasks);
+})
+
+// loop through the local storage to get stored tasks
+for (var i = 0; i <localStorage.length; i++) {
+    $("#hour" + hour[i] + " .description").val(localStorage.getItem("hour" + hour[i]))
 };
 
-var editTask = function() {
-
-};
-
-var test = function() {
-let items = "";
-for (let i = 0; i < time.length; i++) {
-console.log(time[i]);
-items += `<li>${time[i]}</li>`;
-}
-return items;
-}
-
-//edit task bt clicking on the field
-$(".input").on("click", "div", function() {
-    var text = $(this).text().trim();
-    var textInput = $("<textarea>").val(text)
-$(this).replaceWith(textInput);
-textInput.trigger("focus");
-});
-
-//edit task was unfocus
-$(".input").on("blur", "textarea", function() {
-    var text = $(this).val().trim();
-    var status = $(this).closest(".input","");
-    var taskP = $()
-});
-
-// document.querySelector("#input").innerHTML = `<div> ${createTask(tasks)} </div>`;
-// document.querySelector("#hour").innerHTML = `<ol>${test(time)}</ol>`;
+timeIndicator();

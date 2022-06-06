@@ -13,6 +13,10 @@ textarea{
   padding: 10px;
 }
 
+button{
+  text-align: center;
+}
+
 .jumbotron {
   text-align: center;
   background-color: transparent;
@@ -42,11 +46,6 @@ textarea{
   color: #000000;
   border-top: 1px dashed #000000;
 
-}
-
-.hour ol {
-  list-style: none;
-  text-align: start;
 }
 
 .past {
